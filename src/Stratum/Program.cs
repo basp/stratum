@@ -8,8 +8,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddOpenApi();
+        var builder = WebApplication
+            .CreateBuilder(args);
+        builder
+            .Services
+            .AddOpenApi();
         
         var app = builder.Build();
         app
@@ -24,7 +27,6 @@ public class Program
         app
             .MapOpenApi("/api")
             .WithName(EndpointName.ServiceDescription);
-        
         app.Run();
     }
 }
