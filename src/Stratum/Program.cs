@@ -9,6 +9,8 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddOpenApi();
+        
         var app = builder.Build();
         app
             .MapGet("/", LandingPage.Get)
@@ -20,11 +22,9 @@ public class Program
             .MapGet("/collections", Collections.Get)
             .WithName(EndpointName.Collections);
         app
-            .MapGet("/api", () => Results.Ok())
+            .MapOpenApi("/api")
             .WithName(EndpointName.ServiceDescription);
-        app
-            .MapGet("/api.html", () => Results.Ok())
-            .WithName(EndpointName.ServiceDocumentation);
+        
         app.Run();
     }
 }

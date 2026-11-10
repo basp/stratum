@@ -1,8 +1,10 @@
 ﻿namespace Stratum.Endpoints;
 
-public static class LandingPage
+internal static class LandingPage
 {
-    public static IResult Get(LinkGenerator links, HttpContext context) =>
+    public static IResult Get(
+        LinkGenerator links, 
+        HttpContext context) =>
         TypedResults.Ok(new LandingPageResponse(
         [
             new(
