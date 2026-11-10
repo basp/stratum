@@ -26,8 +26,10 @@ public sealed class LandingPageTests(StratumApiFactory factory)
         Assert.Contains(links, el =>
             el.GetProperty("rel").GetString() == "service-desc");
         Assert.Contains(links, el =>
+            el.GetProperty("href").GetString() == "/conformance" &&
             el.GetProperty("rel").GetString() == "conformance");
         Assert.Contains(links, el =>
+            el.GetProperty("href").GetString() == "/collections" &&
             el.GetProperty("rel").GetString() == "data");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
