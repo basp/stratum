@@ -12,6 +12,7 @@
 *.env
 
 .idea/
+.junie/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
