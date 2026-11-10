@@ -2,6 +2,9 @@
 
 internal static class Collections
 {
+    private const string ApplicationType = "application/geo+json";
+    private const string Title = "items";
+    
     public static IResult Get(
         LinkGenerator links,
         HttpContext context)
@@ -15,7 +18,9 @@ internal static class Collections
 
         CollectionDescription[] collections = 
         [
-            new("test", 
+            new("test",
+                // Fake set of links, still need to implement these.
+                // Here, "test" is a collection identifier.
             [
                 new(
                     "/collections/test",
@@ -23,8 +28,8 @@ internal static class Collections
                 new(
                     "/collections/test/items",
                     LinkRelationType.Items,
-                    Type: "application/geo+json",
-                    Title: "items"),
+                    Type: Collections.ApplicationType,
+                    Title: Title),
             ]),
         ];
 
@@ -39,7 +44,7 @@ internal static class Collections
 internal sealed record CollectionsResponse(
     IReadOnlyList<Link> Links,
     IReadOnlyList<CollectionDescription> Collections);
-    
+
 internal sealed record CollectionDescription(
     string Id,
     IReadOnlyList<Link> Links);
