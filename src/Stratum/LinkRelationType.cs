@@ -14,5 +14,4 @@ internal static class LinkRelationType
     public const string Prev = "prev";
     public const string Self = "self";
     public const string ServiceDescription = "service-desc";
-    public const string ServiceDocumentation = "service-doc";
 }
