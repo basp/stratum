@@ -1,2 +1,2 @@
-# stratum
+# Stratum
 OGC API Features implementation.
