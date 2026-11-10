@@ -19,8 +19,8 @@ internal static class LandingPage
             new(
                 links.GetPathByName(context, EndpointName.ServiceDescription)!,
                 LinkRelationType.ServiceDescription,
-                Type: "application/vnd.oai.openapi+json;version=3.0",
-                Title: "OpenAPI 3.0 specification"),
+                Type: WellKnownConstants.OpenApiType,
+                Title: WellKnownConstants.OpenApiTitle),
         ]));
 }
 

@@ -6,8 +6,8 @@ internal static class Conformance
     {
         var response = new ConformanceResponse(
         [
-            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core",
-            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30",
+            WellKnownConstants.CoreConformance,
+            WellKnownConstants.Oas3Conformance,
         ]);
         return TypedResults.Ok(response);
     }
