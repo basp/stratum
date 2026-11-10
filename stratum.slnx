@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/Stratum/Stratum.csproj" />
+    <Project Path="src/Stratum.Tests/Stratum.Tests.csproj" />
   </Folder>
 </Solution>
