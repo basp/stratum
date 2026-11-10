@@ -4,6 +4,13 @@ internal static class Conformance
 {
     public static IResult Get()
     {
-        return TypedResults.Ok();
+        var response = new ConformanceResponse(
+        [
+            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core",
+            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30",
+        ]);
+        return TypedResults.Ok(response);
     }
 }
+
+internal sealed record ConformanceResponse(string[] ConformsTo);

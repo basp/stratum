@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Stratum;
 
 using Endpoints;
@@ -13,6 +15,13 @@ public class Program
         builder
             .Services
             .AddOpenApi();
+        builder
+            .Services
+            .ConfigureHttpJsonOptions(options =>
+            {
+                options.SerializerOptions.DefaultIgnoreCondition = 
+                    JsonIgnoreCondition.WhenWritingNull;
+            });
         
         var app = builder.Build();
         app
@@ -27,6 +36,7 @@ public class Program
         app
             .MapOpenApi("/api")
             .WithName(EndpointName.ServiceDescription);
+        
         app.Run();
     }
 }
