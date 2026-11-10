@@ -13,4 +13,4 @@ internal static class Conformance
     }
 }
 
-internal sealed record ConformanceResponse(string[] ConformsTo);
+internal sealed record ConformanceResponse(IReadOnlyList<string> ConformsTo);

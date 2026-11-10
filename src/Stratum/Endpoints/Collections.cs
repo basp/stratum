@@ -3,13 +3,13 @@
 internal static class Collections
 {
     public static IResult Get(
-        LinkGenerator link,
+        LinkGenerator links,
         HttpContext context)
     {
-        Link[] links =
+        Link[] endpointLinks =
         [
             new(
-                link.GetPathByName(context, EndpointName.Collections)!,
+                links.GetPathByName(context, EndpointName.Collections)!,
                 LinkRelationType.Self),
         ];
 
@@ -19,12 +19,17 @@ internal static class Collections
             [
                 new(
                     "/collections/test",
-                    LinkRelationType.Data),
+                    LinkRelationType.Self),
+                new(
+                    "/collections/test/items",
+                    LinkRelationType.Items,
+                    Type: "application/geo+json",
+                    Title: "items"),
             ]),
         ];
 
         var response = new CollectionsResponse(
-            links,
+            endpointLinks,
             collections);
 
         return TypedResults.Ok(response);
@@ -32,10 +37,10 @@ internal static class Collections
 }
 
 internal sealed record CollectionsResponse(
-    Link[] Links,
-    CollectionDescription[] Collections);
+    IReadOnlyList<Link> Links,
+    IReadOnlyList<CollectionDescription> Collections);
     
 internal sealed record CollectionDescription(
     string Id,
-    Link[] Links);
+    IReadOnlyList<Link> Links);
     

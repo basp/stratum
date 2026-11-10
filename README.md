@@ -6,14 +6,14 @@ OGC API Features implementation.
 2. [x] /req/core/root-success
 3. [ ] /req/core/api-definition-op
 4. [ ] /req/core/api-definition-success
-5. [ ] /req/core/conformance-op
-6. [ ] /req/core/conformance-success
+5. [x] /req/core/conformance-op
+6. [x] /req/core/conformance-success
 7. [ ] /req/core/http
 8. [ ] /req/core/query-param-unknown
 9. [ ] /req/core/query-param-invalid
 10. [ ] /req/core/crs84
-11. [ ] /req/core/fc-md-op
-12. [ ] /req/core/fc-md-success
+11. [x] /req/core/fc-md-op
+12. [x] /req/core/fc-md-success
 13. [ ] /req/core/fc-md-links
 14. [ ] /req/core/fc-md-items
 15. [ ] /req/core/fc-md-items-links
@@ -37,7 +37,7 @@ OGC API Features implementation.
 
 ### Recommendations
 1. [x] /rec/core/root-links
-2. [ ] /rec/core/api-definition-oas
+2. [x] /rec/core/api-definition-oas
 3. [ ] /rec/core/head
 4. [ ] /rec/core/etag
 5. [ ] /rec/core/cross-origin
