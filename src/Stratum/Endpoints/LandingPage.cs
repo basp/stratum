@@ -2,20 +2,30 @@
 
 public static class LandingPage
 {
-    public static IResult Get() =>
+    public static IResult Get(LinkGenerator links, HttpContext context) =>
         TypedResults.Ok(new LandingPageResponse(
         [
-            new("/conformance", LinkRelationType.Conformance),
-            new("/collections", LinkRelationType.Data),
-            new("/api.html", LinkRelationType.ServiceDocumentation),
-            new("/api", LinkRelationType.ServiceDescription),
-            new("/", LinkRelationType.Self),
+            new(
+                links.GetPathByName(context, EndpointName.LandingPage)!,
+                LinkRelationType.Self),
+            new(
+                links.GetPathByName(context, EndpointName.Conformance)!,
+                LinkRelationType.Conformance),
+            new(
+                links.GetPathByName(context, EndpointName.Collections)!,
+                LinkRelationType.Data),
+            new(
+                links.GetPathByName(context, EndpointName.ServiceDocumentation)!,
+                LinkRelationType.ServiceDocumentation),
+            new(
+                links.GetPathByName(context, EndpointName.ServiceDescription)!,
+                LinkRelationType.ServiceDescription),
         ]));
 }
 
-public sealed record Link(
+internal sealed record Link(
     string Href, 
     string Rel);
 
-public sealed record LandingPageResponse(
+internal sealed record LandingPageResponse(
     IReadOnlyList<Link> Links);

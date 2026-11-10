@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Stratum.Endpoints;
 
 namespace Stratum.Tests;
@@ -11,13 +12,14 @@ public sealed class LandingPageTests(StratumApiFactory factory)
     private readonly HttpClient client = factory.CreateClient();
 
     [Fact]
+    [Trait("Category", "Integration")]
     public async Task Req_Core_RootOp()
     {
         _ = await this.client.GetAsync("/");
     }
     
     [Fact]
-    [Trait("Category", "Core")]
+    [Trait("Category", "Integration")]
     public async Task Req_Core_RootSuccess()
     {
         var response = await this.client.GetAsync("/");
@@ -38,6 +40,7 @@ public sealed class LandingPageTests(StratumApiFactory factory)
     }
 
     [Fact]
+    [Trait("Category", "Integration")]
     public async Task Rec_Core_RootLinks()
     {
         var response = await this.client.GetAsync("/");
@@ -50,18 +53,5 @@ public sealed class LandingPageTests(StratumApiFactory factory)
         Assert.Contains(links, el =>
             el.GetProperty("rel").GetString() == "self" &&
             el.GetProperty("href").GetString() == "/");
-    }
-    
-    [Fact]
-    public void Landing_page_exposes_exactly_one_self_link()
-    {
-        var result = 
-            Assert.IsType<Ok<LandingPageResponse>>(LandingPage.Get());
-        var selfLinks = 
-            result.Value!.Links
-                .Where(x => x.Rel == "self")
-                .ToArray();
-        Assert.Single(selfLinks);
-        Assert.Equal("/", selfLinks[0].Href);
     }
 }
