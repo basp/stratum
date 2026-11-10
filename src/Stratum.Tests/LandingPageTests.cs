@@ -1,5 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Stratum.Endpoints;
 
 namespace Stratum.Tests;
 
@@ -15,6 +17,7 @@ public sealed class LandingPageTests(StratumApiFactory factory)
     }
     
     [Fact]
+    [Trait("Category", "Core")]
     public async Task Req_Core_RootSuccess()
     {
         var response = await this.client.GetAsync("/");
@@ -48,5 +51,17 @@ public sealed class LandingPageTests(StratumApiFactory factory)
             el.GetProperty("rel").GetString() == "self" &&
             el.GetProperty("href").GetString() == "/");
     }
+    
+    [Fact]
+    public void Landing_page_exposes_exactly_one_self_link()
+    {
+        var result = 
+            Assert.IsType<Ok<LandingPageResponse>>(LandingPage.Get());
+        var selfLinks = 
+            result.Value!.Links
+                .Where(x => x.Rel == "self")
+                .ToArray();
+        Assert.Single(selfLinks);
+        Assert.Equal("/", selfLinks[0].Href);
+    }
 }
- 
